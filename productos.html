@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Catálogo EPP | B & B SEGURIDAD SAC</title>
+
+  <meta name="description" content="Catálogo de Equipos de Protección Personal (EPP) por categoría. Busca por nombre o código y cotiza por WhatsApp." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Inicio">
+        <img src="assets/img/logo-bb.png" alt="B & B Seguridad SAC" class="brand-logo">
+        <div>
+          <span>B & B SEGURIDAD SAC</span>
+          <small>Seguridad industrial & EPP</small>
+        </div>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰ Menú</button>
+
+      <nav class="nav" id="nav">
+        <a data-nav href="index.html">Inicio</a>
+        <a data-nav href="productos.html">Catálogo</a>
+        <a data-nav href="nosotros.html">Nosotros</a>
+        <a data-nav href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h1 class="h1">Catálogo de productos</h1>
+          <p class="muted">Filtra por categoría o busca por nombre, código o ID.</p>
+        </div>
+        <a class="btn btn-ghost" href="index.html#categorias">Ver categorías</a>
+      </div>
+
+      <div class="card toolbar">
+        <div class="field">
+          <label for="searchInput">Búsqueda</label>
+          <input id="searchInput" type="search" placeholder="Ej: casco, EPP-CAS-001, CAL-001..." />
+        </div>
+
+        <div class="field" style="max-width:320px;">
+          <label for="categorySelect">Categoría</label>
+          <select id="categorySelect">
+            <option value="">Todas</option>
+          </select>
+        </div>
+
+        <!-- ✅ NUEVO: Ordenamiento -->
+        <div class="field" style="max-width:260px;">
+          <label for="sortSelect">Ordenar</label>
+          <select id="sortSelect">
+            <option value="relevancia">Relevancia</option>
+            <option value="menor">Menor precio</option>
+            <option value="mayor">Mayor precio</option>
+          </select>
+        </div>
+
+        <div class="field" style="max-width:220px; justify-content:flex-end;">
+          <label>&nbsp;</label>
+          <button class="btn btn-ghost" id="clearFilters" type="button">Limpiar filtros</button>
+        </div>
+      </div>
+
+      <div class="row mt-16">
+        <div class="muted" id="resultCount">0 producto(s)</div>
+        <div class="muted">Busca tu equipo de protección personal ✅</div>
+      </div>
+
+      <div class="grid grid-4 mt-16" id="productsGrid"></div>
+
+      <!-- ✅ NUEVO: Pager (paginación 12 por página) -->
+      <div class="row mt-16" id="pager"></div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>B & B SEGURIDAD SAC</strong><br/>
+        <span>Catálogo EPP • Cotizaciones por WhatsApp</span>
+      </div>
+      <div class="row">
+        <span class="muted">© 2026 desarrollado por Tecnoval s.a.c.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/productos.js"></script>
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const nav = document.getElementById("nav");
+    menuBtn?.addEventListener("click", () => nav.classList.toggle("show"));
+  </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contacto | B & B SEGURIDAD SAC</title>
+  <meta name="description" content="Contáctanos para cotizar EPP por WhatsApp. Atención corporativa, respuesta rápida, asesoría y entregas." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Inicio">
+        <img src="assets/img/logo-bb.png" alt="B & B Seguridad SAC" class="brand-logo">
+        <div>
+          <span>B & B SEGURIDAD SAC</span>
+          <small>Seguridad industrial & EPP</small>
+        </div>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰ Menú</button>
+
+      <nav class="nav" id="nav">
+        <a data-nav href="index.html">Inicio</a>
+        <a data-nav href="productos.html">Catálogo</a>
+        <a data-nav href="nosotros.html">Nosotros</a>
+        <a data-nav href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h1 class="h1">Contacto</h1>
+          <p class="muted">Te ayudamos a cotizar rápido. Indica producto, código y cantidad.</p>
+        </div>
+        <a class="btn btn-wa" id="whatsappTop" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+
+      <div class="grid" style="grid-template-columns: 1fr 1fr; gap:14px;">
+        <div class="card p-24">
+          <h2 class="h2">Canales de atención</h2>
+          <p class="muted" style="line-height:1.75;">
+            Atención para empresas, contratistas y operaciones industriales.
+          </p>
+
+          <div class="mt-16">
+            <div class="chip">WhatsApp</div>
+            <div class="muted mt-10">Respuesta rápida con mensaje precargado.</div>
+          </div>
+
+          <div class="mt-16">
+            <div class="chip">Correo</div>
+            <div class="muted mt-10">ventas@bbseguridad.com (editable)</div>
+          </div>
+
+          <div class="mt-16">
+            <div class="chip">Horario</div>
+            <div class="muted mt-10">Lun–Sáb: 9:00 am – 6:00 pm</div>
+          </div>
+
+          <div class="note">
+            <strong>Tip:</strong> Este formulario está listo para conectarse a backend luego (PHP/Node).
+          </div>
+        </div>
+
+        <div class="card p-24">
+          <h2 class="h2">Formulario (sin backend aún)</h2>
+          <p class="muted" style="margin:6px 0 12px; line-height:1.7;">
+            En local, enviará por WhatsApp con tu solicitud (ideal para cotizaciones rápidas).
+          </p>
+
+          <form id="contactForm">
+            <div class="grid" style="grid-template-columns: 1fr 1fr; gap:10px;">
+              <div class="field">
+                <label>Nombres</label>
+                <input id="name" type="text" placeholder="Tu nombre" required />
+              </div>
+              <div class="field">
+                <label>Empresa</label>
+                <input id="company" type="text" placeholder="Nombre de empresa" />
+              </div>
+            </div>
+
+            <div class="grid" style="grid-template-columns: 1fr 1fr; gap:10px;">
+              <div class="field">
+                <label>Teléfono</label>
+                <input id="phone" type="tel" placeholder="Ej: 999 999 999" />
+              </div>
+              <div class="field">
+                <label>Correo</label>
+                <input id="email" type="email" placeholder="correo@empresa.com" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Mensaje</label>
+              <input id="message" type="text" placeholder="Ej: Cotizar 20 cascos EPP-CAS-001" required />
+            </div>
+
+            <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>B & B SEGURIDAD SAC</strong><br/>
+        <span>Contacto • Cotizaciones por WhatsApp</span>
+      </div>
+      <div class="row">
+        <span>© <span id="year"></span></span>
+        <span class="muted">B2B • Atención rápida</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const nav = document.getElementById("nav");
+    menuBtn?.addEventListener("click", () => nav.classList.toggle("show"));
+
+    const phoneWa = window.APP_CONFIG.WHATSAPP_NUMBER;
+    const companyBrand = window.APP_CONFIG.COMPANY_NAME;
+    const msgTop = encodeURIComponent(`Hola, vengo desde ${companyBrand}. Quisiera cotizar EPP para mi empresa.`);
+    document.getElementById("whatsappTop").href = `https://wa.me/${phoneWa}?text=${msgTop}`;
+
+    document.getElementById("contactForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const company = document.getElementById("company").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      const text = [
+        `Hola, vengo desde ${companyBrand}.`,
+        `Solicito cotización:`,
+        `• Nombre: ${name}`,
+        company ? `• Empresa: ${company}` : null,
+        phone ? `• Teléfono: ${phone}` : null,
+        email ? `• Correo: ${email}` : null,
+        `• Mensaje: ${message}`
+      ].filter(Boolean).join("\n");
+
+      window.open(`https://wa.me/${phoneWa}?text=${encodeURIComponent(text)}`, "_blank");
+    });
+  </script>
+</body>
+</html>
